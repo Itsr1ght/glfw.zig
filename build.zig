@@ -31,6 +31,15 @@ pub fn build(b: *std.Build) void {
         }
     );
 
+    const gl_bindings = @import("zigglgen").generateBindingsModule(b, .{
+        .api = .gl,
+        .version = .@"4.2",
+        .profile = .core,
+        .extensions = &.{ .ARB_clip_control, .NV_scissor_exclusive },
+    });
+
+    opengl_exe.root_module.addImport("gl", gl_bindings);
+
     const install_opengl_example = b.addInstallArtifact(opengl_exe, .{});
 
     opengl_exe.root_module.addImport("glfw", glfw_mod);
