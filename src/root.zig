@@ -1,3 +1,4 @@
+const std = @import("std");
 const glfw = @import("c.zig").glfw;
 
 const glfwError = error {
@@ -20,3 +21,15 @@ pub const GetProcAddress = glfw.glfwGetProcAddress;
 // struct
 pub const Monitor = @import("monitor.zig").Monitor;
 pub const Window = @import("window.zig").Window;
+
+test "Init GLFW" {
+    init() catch |err| {
+        return err;
+    };
+    defer terminate();
+    try std.testing.expect(true);
+}
+
+test {
+    std.testing.refAllDecls(@This());    
+}

@@ -1,3 +1,4 @@
+const std = @import("std");
 const glfw = @import("c.zig").glfw;
 const glfwError = @import("errors.zig").glfwError;
 const Monitor = @import("monitor.zig").Monitor;
@@ -45,3 +46,24 @@ pub const Window = struct {
     }
 };
 
+
+test "create the window" {
+    const root = @import("root.zig");
+    try root.init();
+    defer root.terminate();
+    
+    const window = Window.init(200, 200, "Test Window", null, null) catch |err| {
+        return err;
+    };
+    defer window.deinit();
+    try std.testing.expect(true);
+}
+
+test "window should close needs to be false" {
+    const root = @import("root.zig");
+    try root.init();
+    defer root.terminate();
+
+    const window = try Window.init(200, 200, "Test Window", null, null);
+    try std.testing.expectEqual(false, window.windowShouldClose());
+}
