@@ -41,7 +41,7 @@ pub const Window = struct {
         glfw.glfwSwapBuffers(self.handle);
     }
 
-    pub fn windowShouldClose(self: Self) bool {
+    pub fn ShouldClose(self: Self) bool {
         return if (glfw.glfwWindowShouldClose(self.handle) == 0) false else true;
     }
 };
@@ -65,5 +65,5 @@ test "window should close needs to be false" {
     defer root.terminate();
 
     const window = try Window.init(200, 200, "Test Window", null, null);
-    try std.testing.expectEqual(false, window.windowShouldClose());
+    try std.testing.expectEqual(false, window.ShouldClose());
 }

@@ -90,7 +90,7 @@ pub fn main() !u8 {
     gl.LinkProgram(shaProgram);
 
 
-    while(!window.windowShouldClose()){
+    while(!window.ShouldClose()){
 
         gl.ClearColor(0.3, 0.3, 0.3, 1.0);
         gl.Clear(gl.COLOR_BUFFER_BIT);

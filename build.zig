@@ -24,10 +24,7 @@ pub fn build(b: *std.Build) void {
     lib_unit_tests.linkLibC();
     lib_unit_tests.linkSystemLibrary("glfw");
 
-    b.installArtifact(lib_unit_tests);
-
     const run_unit_tests = b.addRunArtifact(lib_unit_tests);
-
     const run_test_step = b.step("test", "runs the unit tests");
     run_test_step.dependOn(&run_unit_tests.step);
 
