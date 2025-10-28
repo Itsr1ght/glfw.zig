@@ -9,7 +9,7 @@ zig fetch --save "git+https://github.com/Itsr1ght/glfw.zig"
 ```
 
 on build.zig
-```
+```zig
 const glfw_package = b.dependency("glfw_zig",
     .target = target,
     .optimize = optimize,
