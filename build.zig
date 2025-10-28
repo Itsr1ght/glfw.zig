@@ -56,4 +56,8 @@ pub fn build(b: *std.Build) void {
     opengl_exe.root_module.addImport("glfw", glfw_mod);
     const example_step = b.step("examples", "build all the example files");
     example_step.dependOn(&install_opengl_example.step);
+
+    const runnable_gl_task = b.addRunArtifact(opengl_exe);
+    const run_opengl_step = b.step("example-gl", "run the gl example");
+    run_opengl_step.dependOn(&runnable_gl_task.step);
 }
