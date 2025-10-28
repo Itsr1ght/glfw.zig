@@ -23,12 +23,9 @@ exe.root_module.addImport("glfw", glfw_package.module("glfw"))
 const std = @import("std");
 const glfw = @import("glfw");
 
-
 pub fn main() !u8 {
     
     try glfw.init();
-    
-
     defer glfw.terminate();
 
     const window = try glfw.Window.init(
@@ -42,8 +39,6 @@ pub fn main() !u8 {
         window.swapBuffers();
         glfw.pollEvents();
     }
-
     return 0;
 }
-
 ```
