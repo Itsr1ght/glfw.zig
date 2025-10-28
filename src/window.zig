@@ -29,6 +29,14 @@ pub const Window = struct {
         else return glfwError.InitWindowError;
     }
 
+    pub fn setWindowResize(self: Self, width: i32, height: i32) void {
+        glfw.glfwSetWindowSize(self.handle, width, height);
+    }
+
+    pub fn setWindowTitle(self: Self, new_title: [*]const u8) void {
+        glfw.glfwSetWindowTitle(self.handle, new_title);
+    }
+
     pub fn deinit(self: Self) void {
        glfw.glfwDestroyWindow(self.handle);
     }
