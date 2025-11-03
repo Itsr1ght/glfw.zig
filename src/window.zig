@@ -33,6 +33,12 @@ pub const Window = struct {
         glfw.glfwSetWindowSize(self.handle, width, height);
     }
 
+    pub fn getWindowSize(self: Self) struct {u32, u32} {
+        var width = 0;var height = 0;
+        glfw.glfwGetWindowSize(self.handle, &width, &height);
+        return .{width, height};
+    }
+
     pub fn setWindowTitle(self: Self, new_title: [*]const u8) void {
         glfw.glfwSetWindowTitle(self.handle, new_title);
     }
