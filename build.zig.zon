@@ -7,13 +7,6 @@
             .hash = "N-V-__8AAGILeQBiX6fOeXM8aImETLAuofbkuBtGo_q6zsGB",
             .lazy = true,
         },
-
-        // This package is only for examples
-        .zigglgen = .{
-            .url = "git+https://github.com/castholm/zigglgen.git#b624cc7d2e984f61c63a83a3d0ad6c686782f961",
-            .hash = "zigglgen-0.4.0-bmyqLV6PLwAt0VCiGVgz6kZ448zaiTix2Z8MXEEuN4Vi",
-            .lazy = true,
-        },
     },
     .minimum_zig_version = "0.15.2",
     .paths = .{""},
