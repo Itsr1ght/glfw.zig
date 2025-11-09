@@ -178,6 +178,8 @@ fn compileGlfw(
         else => {
 
             glfw_root_module.addCMacro("_GLFW_X11", "1");
+            // need to support wayland in future
+            // glfw_root_module.addCMacro("_GLFW_WAYLAND", "1");
 
             glfw_root_module.addCSourceFiles(.{
                 .root = .{.cwd_relative = glfw_source_path},
@@ -188,7 +190,15 @@ fn compileGlfw(
             });
 
             // Main Source Files
-
+            // Common stuff
+            glfw_root_module.addCSourceFiles(.{
+                .root = .{.cwd_relative = glfw_source_path},
+                .language = .c,
+                .files = &.{
+                    "linux_joystick.c", "posix_poll.c"
+                }
+            });
+            // Only X11 stuff
             glfw_root_module.addCSourceFiles(.{
                 .root = .{.cwd_relative = glfw_source_path},
                 .language = .c,
@@ -196,17 +206,15 @@ fn compileGlfw(
                     "x11_init.c", "x11_monitor.c", "x11_window.c", "xkb_unicode.c", "glx_context.c"
                 }
             });
-
-            // For X11 
-            // For Testing purpose i only use x11
+            // Only Wayland stuff
             glfw_root_module.addCSourceFiles(.{
                 .root = .{.cwd_relative = glfw_source_path},
                 .language = .c,
                 .files = &.{
-                    "x11_init.c", "x11_monitor.c", "x11_window.c", "xkb_unicode.c", "glx_context.c", "linux_joystick.c", "posix_poll.c"
+                    "wl_init.c", "wl_monitor.c","wl_window.c"
                 }
             });
-
+            
         },
     }
     return glfw_library;
