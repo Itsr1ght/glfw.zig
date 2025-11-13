@@ -40,7 +40,7 @@ pub fn build(b: *std.Build) void {
     example_step.dependOn(&install_opengl_example.step);
 
     if(glfw_package.builder.user_input_options.get("link_type")) |link_type|{
-    if(std.mem.eql(u8, link_type.value.scalar, "dynamic")){
+        if(std.mem.eql(u8, link_type.value.scalar, "dynamic")){
             opengl_exe.linkLibrary(glfw_package.artifact("glfw"));
             const glfw_artifact = glfw_package.artifact("glfw");
             const install_glfw_artifact = b.addInstallArtifact(glfw_artifact,
