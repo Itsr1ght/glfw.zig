@@ -78,7 +78,7 @@ fn compileGlfw(
     target: std.Build.ResolvedTarget, optimize: std.builtin.OptimizeMode
     ) *std.Build.Step.Compile {
     
-    const glfw_package: *std.Build.Dependency= b.lazyDependency("glfw_c", .{}).?;
+    const glfw_package: *std.Build.Dependency= b.dependency("glfw_c", .{});
     const glfw_source_path: []const u8 = glfw_package.path("src").getPath(b);
     const glfw_include_path: []const u8 = glfw_package.path("include/GLFW").getPath(b);
 
