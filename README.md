@@ -1,6 +1,8 @@
 # glfw.zig
 
 Binding for glfw for zig 0.15.1
+> [!NOTE]
+> Currently WIP, not fully implemented
 
 ## Usage
 
