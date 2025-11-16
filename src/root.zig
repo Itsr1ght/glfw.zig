@@ -8,6 +8,7 @@ const glfwError = error {
 };
 
 // global functions
+pub const c = glfw;
 pub fn init() glfwError!void {
     const result = glfw.glfwInit();
     if (result == 0) {

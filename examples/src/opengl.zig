@@ -19,11 +19,24 @@ const fragment_shader_src: [*]const u8 =
     \\}
     ;
 
+fn keyCallback(window: ?*glfw.c.GLFWwindow, key: c_int, scancode: c_int, action: c_int, mods: c_int) callconv(.c) void {
+    _ = scancode;
+    _ = mods;
+    if ((key == glfw.c.GLFW_KEY_ESCAPE) and (action == glfw.c.GLFW_PRESS)) {
+        glfw.c.glfwSetWindowShouldClose(window, glfw.c.GLFW_TRUE);
+    }
+}
+
+fn framebufferResize(window: ?*glfw.c.GLFWwindow, width: c_int, height: c_int) callconv(.c) void {
+    _ = window;
+    gl.Viewport(0,0, width, height);
+}
+
 pub fn main() !u8 {
     try glfw.init();
     defer glfw.terminate();
     
-    const window = try glfw.Window.init(640, 400, "Hello Zig", null, null);
+    var window = try glfw.Window.init(640, 400, "Hello Zig", null, null);
     defer window.deinit();
 
     window.makeContextCurrent();
@@ -89,6 +102,8 @@ pub fn main() !u8 {
     gl.AttachShader(shaProgram, fragShader);
     gl.LinkProgram(shaProgram);
 
+    window.setKeyCallback(keyCallback);
+    window.setFramebufferSizeCallback(framebufferResize);
 
     while(!window.ShouldClose()){
 
@@ -101,6 +116,7 @@ pub fn main() !u8 {
 
         window.swapBuffers();
         glfw.pollEvents();
+
     }
     return 0;
 }
