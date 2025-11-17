@@ -17,7 +17,11 @@ pub fn init() glfwError!void {
 }
 pub const pollEvents = glfw.glfwPollEvents;
 pub const terminate = glfw.glfwTerminate;
+// opengl stuff
 pub const GetProcAddress = glfw.glfwGetProcAddress;
+// vulkan stuff
+pub const vulkanSupported = glfw.glfwVulkanSupported;
+pub const getRequiredInstanceExtensions = glfw.glfwGetRequiredInstanceExtensions;
 
 // struct
 pub const Monitor = @import("monitor.zig").Monitor;

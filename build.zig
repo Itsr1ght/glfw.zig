@@ -32,6 +32,10 @@ pub fn build(b: *std.Build) void {
     const link_type_option = b.option(
         link_type, "link_type", "how does the glfw link with your executable"
     ) orelse default_link_type;
+
+    const vulkan_support = b.option(
+        bool, "vulkan_support", "do your executable needs vulkan support?"
+    ) orelse false;
     
     const glfw_mod = b.addModule(
         "glfw",
@@ -43,6 +47,10 @@ pub fn build(b: *std.Build) void {
     );
 
     glfw_mod.link_libc = true;
+
+    if (vulkan_support){
+        glfw_mod.addCMacro("GLFW_INCLUDE_VULKAN", "");
+    }
     switch (link_type_option){
         .system => {
             glfw_mod.linkSystemLibrary("glfw", .{});
