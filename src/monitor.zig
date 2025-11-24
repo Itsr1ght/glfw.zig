@@ -1,5 +1,5 @@
 const std = @import("std");
-const glfw = @import("c.zig");
+const glfw = @import("c.zig").glfw;
 const glfwError = @import("errors.zig").glfwError;
 
 pub const Monitor = struct {

@@ -1,5 +1,9 @@
 const std = @import("std");
-const glfw = @import("c.zig");
+
+pub const Monitor = @import("monitor.zig").Monitor;
+pub const Window = @import("window.zig").Window;
+
+const glfw = @import("c.zig").glfw;
 
 const glfwError = error {
     InitFailed,
@@ -24,9 +28,6 @@ pub const vulkanSupported = glfw.glfwVulkanSupported;
 pub const getRequiredInstanceExtensions = glfw.glfwGetRequiredInstanceExtensions;
 
 // struct
-pub const Monitor = @import("monitor.zig").Monitor;
-pub const Window = @import("window.zig").Window;
-
 test "Init GLFW" {
     init() catch |err| {
         return err;

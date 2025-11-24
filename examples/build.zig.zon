@@ -1,15 +1,22 @@
-.{ .name = .examples, .version = "0.0.1", .minimum_zig_version = "0.15.2", .paths = .{""}, .fingerprint = 0x7bd0ad4573970052, .dependencies = .{
-    .glfw = .{ .path = ".." },
-    .zigglgen = .{
-        .url = "git+https://github.com/castholm/zigglgen#b624cc7d2e984f61c63a83a3d0ad6c686782f961",
-        .hash = "zigglgen-0.4.0-bmyqLV6PLwAt0VCiGVgz6kZ448zaiTix2Z8MXEEuN4Vi",
-    },
-    .vulkan_headers = .{
-        .url = "https://github.com/KhronosGroup/Vulkan-Headers/archive/refs/tags/v1.4.332.tar.gz",
-        .hash = "N-V-__8AAB3SBAKySRcX3yPGLhjKZreuo_mCzCTRBgkE1e-v",
-    },
-    .vulkan = .{
+.{
+    .name = .examples,
+    .version = "0.0.1",
+    .minimum_zig_version = "0.15.2",
+    .paths = .{""},
+    .fingerprint = 0x7bd0ad4573970052,
+    .dependencies = .{
+        .glfw = .{ .path = ".." },
+        .zigglgen = .{
+            .url = "git+https://github.com/castholm/zigglgen#b624cc7d2e984f61c63a83a3d0ad6c686782f961",
+            .hash = "zigglgen-0.4.0-bmyqLV6PLwAt0VCiGVgz6kZ448zaiTix2Z8MXEEuN4Vi",
+        },
+        .vulkan_headers = .{
+            .url = "https://github.com/KhronosGroup/Vulkan-Headers/archive/refs/tags/v1.4.332.tar.gz",
+            .hash = "N-V-__8AAB3SBAKySRcX3yPGLhjKZreuo_mCzCTRBgkE1e-v",
+        },
+        .vulkan = .{
             .url = "git+https://github.com/Snektron/vulkan-zig?ref=zig-0.15-compat#1446b0b994c2362264cc24513d7c7ec31b469c50",
             .hash = "vulkan-0.0.0-r7Ytx_VDAwAiMl0YSu2UOkVMIGJN7CeIQaxJR-hUSfD6",
         },
-} }
+    }
+}

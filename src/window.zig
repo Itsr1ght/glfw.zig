@@ -1,5 +1,5 @@
 const std = @import("std");
-const glfw = @import("c.zig");
+const glfw = @import("c.zig").glfw;
 const glfwError = @import("errors.zig").glfwError;
 const Monitor = @import("monitor.zig").Monitor;
 
@@ -39,11 +39,11 @@ pub const Window = struct {
         return .{width, height};
     }
 
-    pub fn setKeyCallback(self: *Self, callback_func: fn(window: *glfw.GLFWwindow, key: c_int, scancode: c_int, action: c_int, mods: c_int) callconv(.c) void) void {
+    pub fn setKeyCallback(self: *Self, callback_func: fn(window: ?*glfw.GLFWwindow, key: c_int, scancode: c_int, action: c_int, mods: c_int) callconv(.c) void) void {
         _ = glfw.glfwSetKeyCallback(self.handle, callback_func);
     }
 
-    pub fn setFramebufferSizeCallback(self: *Self, callback_func: fn(window: *glfw.GLFWwindow, width: c_int, height: c_int) callconv(.c) void) void {
+    pub fn setFramebufferSizeCallback(self: *Self, callback_func: fn(window: ?*glfw.GLFWwindow, width: c_int, height: c_int) callconv(.c) void) void {
         _ = glfw.glfwSetWindowSizeCallback(self.handle, callback_func);
     }
 

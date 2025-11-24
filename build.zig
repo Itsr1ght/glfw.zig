@@ -1,6 +1,5 @@
 const std = @import("std");
 
-
 const link_type = enum {
     static,
     dynamic,
@@ -9,7 +8,6 @@ const link_type = enum {
 
 
 pub fn build(b: *std.Build) void {
-
 
     const target = b.standardTargetOptions(.{});
     const optimize = b.standardOptimizeOption(.{});
@@ -27,7 +25,6 @@ pub fn build(b: *std.Build) void {
             std.debug.panic("Unsupported OS", .{});
         }
     }
-
 
     const link_type_option = b.option(
         link_type, "link_type", "how does the glfw link with your executable"
