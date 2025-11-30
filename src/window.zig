@@ -55,6 +55,13 @@ pub const Window = struct {
        glfw.glfwDestroyWindow(self.handle);
     }
 
+    pub fn getFramebufferSize(self: *Self) struct {w: c_int, h: c_int} {
+        var w: c_int = undefined;
+        var h: c_int = undefined;
+        glfw.glfwGetFramebufferSize(self.handle, &w, &h);
+        return .{ .w = w, .h = h };
+    }
+
     pub fn makeContextCurrent(self: Self) void {
         glfw.glfwMakeContextCurrent(self.handle);
     }

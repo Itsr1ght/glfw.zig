@@ -47,6 +47,7 @@ pub fn build(b: *std.Build) void {
 
     if (vulkan_support){
         glfw_mod.addCMacro("GLFW_INCLUDE_VULKAN", "");
+        glfw_mod.addCMacro("GLFW_INCLUDE_NONE", "");
     }
     switch (link_type_option){
         .system => {
