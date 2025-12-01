@@ -2,6 +2,8 @@ const std = @import("std");
 const vk = @import("vulkan");
 const glfw = @import("glfw");
 
+const application_name :[]const u8 = "Hello Vulkan";
+
 pub fn main() !void {
 
     var arena: std.heap.ArenaAllocator = .init(std.heap.smp_allocator);
@@ -23,7 +25,7 @@ pub fn main() !void {
     var window = try glfw.Window.init(
         @as(i32, @intCast(extent.width)),
         @as(i32, @intCast(extent.height)),
-        "Hello Vulkan",
+        application_name,
         null,
         null
     );
@@ -45,6 +47,7 @@ pub fn main() !void {
     var vkb = vk.BaseWrapper.load(VulkanLoader.loadFn);
 
     var extension_names: std.ArrayList([*:0]const u8) = .empty;
+    defer extension_names.deinit(allocator);
 
     var extension_count: u32 = 0;
     const required_extensions: [*c][*c]const u8 = glfw.getRequiredInstanceExtensions(&extension_count);
@@ -57,9 +60,9 @@ pub fn main() !void {
 
     const instance = try vkb.createInstance(&.{
         .p_application_info = &.{
-            .p_application_name = "Hello Vulkan",
+            .p_application_name = application_name,
             .application_version = @bitCast(vk.makeApiVersion(0,0,0,0)),
-            .p_engine_name = "Hello Vulkan",
+            .p_engine_name = application_name,
             .engine_version = @bitCast(vk.makeApiVersion(0,0,0,0)),
             .api_version = @bitCast(vk.API_VERSION_1_2),
         },
