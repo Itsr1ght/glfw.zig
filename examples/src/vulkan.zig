@@ -93,20 +93,21 @@ pub fn main() !u8 {
     var instance_proxy = vk.InstanceProxy.init(instance, vki);
     errdefer instance_proxy.destroyInstance(null);
 
-    //const debug_messenger = try instance_proxy.createDebugUtilsMessengerEXT(&.{
-    //  .message_severity = .{
-    //        .warning_bit_ext = true,
-    //        .error_bit_ext = true,
-    //    },
-    //    .message_type = .{
-    //        .general_bit_ext = true,
-    //        .validation_bit_ext = true,
-    //    },
-    //    .pfn_user_callback = debugUtilsMessengerCallback,
-    //    .p_user_data = null,
-    //}, null);
-    
-    //_ = debug_messenger;
+    const debug_messenger = try instance_proxy.createDebugUtilsMessengerEXT(&.{
+        .message_severity = .{
+            .warning_bit_ext = true,
+            .error_bit_ext = true,
+        },
+        .message_type = .{
+            .general_bit_ext = true,
+            .validation_bit_ext = true,
+        },
+        .pfn_user_callback = debugUtilsMessengerCallback,
+        .p_user_data = null,
+        }, null
+    );
+
+    _ = debug_messenger;
 
     var surface: vk.SurfaceKHR = undefined; 
     if(glfwCreateWindowSurface(instance_proxy.handle, window.handle.?, null, &surface) != .success) {
